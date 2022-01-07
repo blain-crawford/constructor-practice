@@ -15,6 +15,10 @@ const Gams = function(quality, mind) {
   }
 };
 
+Gams.prototype.print = function() {
+  return 'This shit is crazy!'
+};
+
 let gams = new Gams('Afro', 'mind');
 let blams = new Gams('smile', 'sense of humor')
 
@@ -23,4 +27,10 @@ myDiv.appendChild(myH1);
 
 myH1Also.textContent = blams.blamsCompliment();
 myDiv.appendChild(myH1Also);
+
+let myCrain = [blams, gams];
+
+myCrain.forEach(partner => console.log(partner.print()))
+
+
 
