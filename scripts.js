@@ -1,6 +1,11 @@
-let myDiv = document.getElementById('checking');
-let myH1 = document.createElement('h1');
-let myH1Also = document.createElement('h1');
+const myDiv = document.getElementById('checking');
+const myH1 = document.createElement('h1');
+const myH1Also = document.createElement('h1');
+const userNameInput = document.getElementById('user-name');
+const nameInput = document.getElementById('name');
+const emailInput = document.getElementById('email');
+const submitButton = document.getElementById('submit');
+const usersArray = [];
 
 
 const Gams = function(quality, mind) {
@@ -14,6 +19,12 @@ const Gams = function(quality, mind) {
     return `The Blams has a nice ${this.quality}, and an incredible ${this.mind}!`
   }
 };
+
+const clearInputs = () => {
+  nameInput.value = '';
+  userNameInput.value = '';
+  emailInput.value = '';
+}
 
 Gams.prototype.print = function() {
   return this.blamsCompliment();
@@ -30,7 +41,23 @@ myDiv.appendChild(myH1Also);
 
 let myCrain = [blams, gams];
 
-myCrain.forEach(partner => console.log(partner.print()))
+myCrain.forEach(partner => console.log(partner.hasOwnProperty('qualms')))
+
+function Account(userName, name, email){
+  this.userName = userName;
+  this.name = name;
+  this.email = email;
+}
+
+const createAccount = (userName, newName, newEmail) => {
+  const newUser = new Account(userNameInput.value, nameInput.value, emailInput.value);
+  usersArray.push(newUser);
+  clearInputs();
+};
+
+submitButton.addEventListener('click', createAccount);
+
+
 
 
 
