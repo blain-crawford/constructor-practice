@@ -1,5 +1,5 @@
 const myDiv = document.getElementById('checking');
-myDiv.style.cssText = 'display: flex; flex-wrap: wrap; gap: 20px;'
+myDiv.style.cssText = 'display: flex; flex-wrap: wrap; gap: 20px;';
 const myH1 = document.createElement('h1');
 const myH1Also = document.createElement('h1');
 const userNameInput = document.getElementById('user-name');
@@ -9,7 +9,7 @@ const submitButton = document.getElementById('submit');
 const deleteAccountButton = document.getElementById('delete-account');
 let usersArray = [];
 
-console.log(myDiv)
+
 // const Gams = function(quality, mind) {
 //   this.quality = quality;
 //   this.mind = mind;
@@ -45,19 +45,14 @@ console.log(myDiv)
 
 // myCrain.forEach(partner => console.log(partner.hasOwnProperty('qualms')))
 
-function Account(userName, name, email){
+function Account(userName, name, email) {
   this.userName = userName;
   this.name = name;
   this.email = email;
-  displayUsers();
 }
 
-
-
-
-
 const displayUsers = () => {
-  for(let i = 0; i < usersArray.length; i++){
+  for (let i = 0; i < usersArray.length; i++) {
     const newUserName = usersArray[i].userName;
     const newName = usersArray[i].name;
     const newEmail = usersArray[i].email;
@@ -76,33 +71,39 @@ const displayUsers = () => {
 };
 
 const createAccount = () => {
-  if(userNameInput.value === '' || nameInput.value === '' || emailInput.value === '') {
+  if (
+    userNameInput.value === '' ||
+    nameInput.value === '' ||
+    emailInput.value === ''
+  ) {
     alert('ERROR: ALL FIELDS REQUIRED');
     return;
   }
-  const newUser = new Account(userNameInput.value, nameInput.value, emailInput.value);
+  const newUser = new Account(
+    userNameInput.value,
+    nameInput.value,
+    emailInput.value
+  );
   userNameInput.value = '';
-  nameInput.value = ''; 
+  nameInput.value = '';
   emailInput.value = '';
-  if(myDiv.hasChildNodes()) {
-    while(myDiv.firstChild) {
+  if (myDiv.hasChildNodes()) {
+    while (myDiv.firstChild) {
       myDiv.removeChild(myDiv.lastChild);
     }
-  };
+  }
   usersArray.push(newUser);
   displayUsers();
-  
 };
 
 const deleteAccount = () => {
   usersArray.pop();
-  if(myDiv.hasChildNodes()) {
-    while(myDiv.firstChild) {
+  if (myDiv.hasChildNodes()) {
+    while (myDiv.firstChild) {
       myDiv.removeChild(myDiv.lastChild);
     }
-  };
+  }
   displayUsers();
-  console.log(usersArray);
 };
 
 deleteAccountButton.addEventListener('click', deleteAccount);
