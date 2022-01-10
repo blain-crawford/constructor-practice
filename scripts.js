@@ -52,20 +52,9 @@ function Account(userName, name, email){
   displayUsers();
 }
 
-const createAccount = (userName, newName, newEmail) => {
-  const newUser = new Account(userNameInput.value, nameInput.value, emailInput.value);
-  
-  if(myDiv.hasChildNodes()) {
-    while(myDiv.firstChild) {
-      myDiv.removeChild(myDiv.lastChild);
-    }
-  };
-  usersArray.push(newUser);
-  displayUsers();
-  
-};
 
-submitButton.addEventListener('click', createAccount);
+
+
 
 const displayUsers = () => {
   for(let i = 0; i < usersArray.length; i++){
@@ -86,6 +75,25 @@ const displayUsers = () => {
   }
 };
 
+const createAccount = () => {
+  if(userNameInput.value === '' || nameInput.value === '' || emailInput.value === '') {
+    alert('ERROR: ALL FIELDS REQUIRED');
+    return;
+  }
+  const newUser = new Account(userNameInput.value, nameInput.value, emailInput.value);
+  userNameInput.value = '';
+  nameInput.value = ''; 
+  emailInput.value = '';
+  if(myDiv.hasChildNodes()) {
+    while(myDiv.firstChild) {
+      myDiv.removeChild(myDiv.lastChild);
+    }
+  };
+  usersArray.push(newUser);
+  displayUsers();
+  
+};
+
 const deleteAccount = () => {
   usersArray.pop();
   if(myDiv.hasChildNodes()) {
@@ -98,4 +106,5 @@ const deleteAccount = () => {
 };
 
 deleteAccountButton.addEventListener('click', deleteAccount);
+submitButton.addEventListener('click', createAccount);
 
